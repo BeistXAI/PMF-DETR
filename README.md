@@ -2,7 +2,7 @@ This code is a **pytorch** implementation of our paper "**PMF-DETR: A Pediatric 
 
 ![PMF-DETR architecture](assets/paper_architecture.png)
 
-**Fig. 1.** The overall architecture of the proposed PMF-DETR detector, in which three key modules are designed and introduced: the multi-scale edge enhanced attention preextracts edge features, the self-adaptive dual contrast aggregation improves the recall rate of fine fractures and reduces boundary localization errors, and multi-branch convolution models orientation-sensitive features.
+**Fig. 1.** The overall architecture of the proposed PMF-DETR detector, in which three key modules are designed and introduced: the multi-scale edge enhanced attention pre-extracts edge features, the self-adaptive dual contrast aggregation improves the recall rate of fine fractures and reduces boundary localization errors, and multi-branch convolution models orientation-sensitive features.
 
 ## 🧑🏻‍🏫 Background
 
