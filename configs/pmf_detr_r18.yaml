@@ -1,5 +1,3 @@
-description: Method-equation implementation; unspecified manuscript settings are explicit
-  engineering defaults.
 model:
   num_classes: 1
   input_channels: 3
