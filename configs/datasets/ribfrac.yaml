@@ -1,0 +1,5 @@
+path: ../../data/ribfrac
+train: images/train
+val: images/val
+names:
+- fracture

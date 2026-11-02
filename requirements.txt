@@ -1,0 +1,7 @@
+# Install the appropriate CPU/CUDA PyTorch wheel first; see README.md.
+torch>=2.5.1,<2.6
+numpy>=1.24,<3
+scipy>=1.10,<2
+Pillow>=10.0,<13
+PyYAML>=6.0,<7
+
