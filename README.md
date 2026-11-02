@@ -31,8 +31,6 @@ Low-dose pediatric CT can contain weak fracture boundaries, reduced local contra
 - PyTorch **2.5.1**; CPU supports functional tests, and a CUDA GPU is recommended for full training.
 - Pre-windowed 8-bit 2-D images and YOLO bounding-box labels.
 
-The manuscript reports Python 3.8 / PyTorch 2.0.0+cu118 / RTX 4090. This cleaned release uses the separately documented environment above. CUDA training, CUDA AMP and the paper's reported 22 FPS were not measured in the available CPU environment.
-
 ## 🌵 Installation
 
 Run the commands from the repository root:
