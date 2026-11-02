@@ -2,7 +2,7 @@ This code is a **pytorch** implementation of our paper "**PMF-DETR: A Pediatric 
 
 ![PMF-DETR architecture](assets/paper_architecture.png)
 
-**Fig. 1.** Overview of the **PMF-DETR** architecture.
+**Fig. 1.** The overall architecture of the proposed PMF-DETR detector, in which three key modules are designed and introduced: the multi-scale edge enhanced attention preextracts edge features, the self-adaptive dual contrast aggregation improves the recall rate of fine fractures and reduces boundary localization errors, and multi-branch convolution models orientation-sensitive features.
 
 ## 🧑🏻‍🏫 Background
 
@@ -18,9 +18,9 @@ Low-dose pediatric CT can contain weak fracture boundaries, reduced local contra
 ## 🌟 Main Components
 
 | Component | Implemented behavior |
-| --- | --- | --- |
+| --- | --- |
 | MEEA | Gabor/Sobel filter banks at dilations 1, 2 and 5; learned pointwise fusion and a sigmoid feature gate |
-| SADCA | Per-image foreground/background dynamic depthwise kernels, spatial blending, channel and spatial attention
+| SADCA | Per-image foreground/background dynamic depthwise kernels, spatial blending, channel and spatial attention |
 | MBConv | Horizontal, vertical and two diagonal-initialized convolution branches; concatenation and fusion |
 | Localization | Focaler-GIoU with standard RT-DETR Hungarian matching, L1 and classification terms |
 | Detector | ResNet-18, four-scale feature fusion, P3/P4/P5 deformable decoder, auxiliary and denoising supervision |
@@ -223,28 +223,4 @@ For an explicitly measured model-only throughput report:
 python tools/benchmark.py --checkpoint runs/pmf_axial/best.pt \
   --device cuda:0 --imgsz 640 --batch-size 1 \
   --warmup 10 --iterations 50 --output runs/pmf_axial/benchmark.json
-```
-
-## 🔬 Ablations
-
-`configs/ablations/modules_ABC.yaml` enumerates all eight combinations, where **A=MEEA, B=SADCA, C=MBConv**. For example, `modules_100.yaml` enables MEEA alone and `modules_111.yaml` enables all three.
-
-```bash
-python train.py --config configs/ablations/modules_100.yaml \
-  --data configs/datasets/pmf_axial.yaml --output runs/ablation_100
-```
-
-## ✅ Software Verification
-
-```bash
-python -m unittest discover -s tests -v
-
-python tools/make_smoke_data.py --output data/smoke
-python tools/check_dataset.py --data data/smoke/dataset.yaml --patients data/smoke/patients.csv
-python train.py --config data/smoke/smoke_config.yaml --data data/smoke/dataset.yaml \
-  --device cpu --threads 2 --output runs/smoke
-python val.py --checkpoint runs/smoke/best.pt --data data/smoke/dataset.yaml \
-  --split test --device cpu --workers 0 --threads 2 --output runs/smoke/test_metrics.json
-python predict.py --checkpoint runs/smoke/best.pt --source data/smoke/images/test \
-  --device cpu --threads 2 --output runs/smoke/predictions
 ```
