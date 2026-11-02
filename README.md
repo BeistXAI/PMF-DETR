@@ -166,16 +166,6 @@ python train.py --config configs/pmf_detr_r18.yaml \
   --weights runs/pmf_axial/best.pt --output runs/pmf_axial_finetune
 ```
 
-## 🗃️ Checkpoints and Logs
-
-| Output | Purpose |
-| --- | --- |
-| `last.pt` | Latest resumable state |
-| `best.pt` | State with the highest validation AP50:95 |
-| `config.yaml` | Effective experiment settings |
-| `experiment.json` | Dataset, class order, environment and data signature |
-| `history.json` | Per-epoch losses, learning rates and validation metrics |
-
 ## 📊 Evaluation
 
 ```bash
