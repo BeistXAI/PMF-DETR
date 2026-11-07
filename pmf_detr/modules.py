@@ -40,6 +40,7 @@ def _gabor_bank(sigma: float, wavelength: float, gamma: float) -> Tensor:
     return torch.stack(kernels).unsqueeze(1)
 
 
+# MEEA: Multi-scale Edge-Enhanced Attention.
 class MEEA(nn.Module):
     def __init__(self, channels: int, dilations: Sequence[int] = (1, 2, 5),
                  sigma: float = 1.0, wavelength: float = 2.0, gamma: float = 0.5):
@@ -81,6 +82,7 @@ class SemanticDecoupling(nn.Module):
         return context * gate, context * (1 - gate)
 
 
+# SADCA: Self-Adaptive Dual Contrast Aggregation; kernel_size is a fixed window.
 class SADCA(nn.Module):
     def __init__(self, channels: int, kernel_size: int = 3,
                  reduction: int = 16, spatial_kernel: int = 7):
@@ -126,6 +128,7 @@ class SADCA(nn.Module):
         return response * channel * spatial
 
 
+# MBConv: Orientation-Sensitive Multi-Branch Convolution.
 class MBConv(nn.Module):
     def __init__(self, in_channels: int, out_channels: int | None = None,
                  kernel_size: int = 5, branch_ratio: float = 0.25,
