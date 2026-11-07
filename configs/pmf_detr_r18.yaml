@@ -1,3 +1,4 @@
+# Default model and optimization configuration. Dataset paths are in configs/datasets/.
 model:
   num_classes: 1
   input_channels: 3
@@ -14,29 +15,31 @@ model:
   meea: true
   sadca: true
   mbconv: true
-  meea_dilations:
+  meea_dilations:  # MEEA dilation rates d_k
   - 1
   - 2
   - 5
   meea_sigma: 1.0
   meea_wavelength: 2.0
   meea_gamma: 0.5
-  sadca_kernel_size: 3
+  sadca_kernel_size: 3  # SADCA local window size K
   sadca_reduction: 16
   sadca_spatial_kernel: 7
-  mbconv_kernel_size: 5
+  mbconv_kernel_size: 5  # MBConv horizontal/vertical kernel length k
   mbconv_branch_ratio: 0.25
   mbconv_diagonal_scale: 2.0
   fpn_depth: 3
+# Matching/localization/classification weights and the selected box loss.
 loss:
   box_loss: focaler_giou
-  focaler_lower: 0.0
-  focaler_upper: 0.95
+  focaler_lower: 0.0  # Lower interval bound d
+  focaler_upper: 0.95  # Upper interval bound u
   nwd_weight: 0.0
   nwd_constant: 12.8
   class_weight: 1.0
   bbox_weight: 5.0
   giou_weight: 2.0
+# Training defaults; the seed below is not evidence of the historical patient split seed.
 train:
   epochs: 300
   batch_size: 4
@@ -51,6 +54,7 @@ train:
   hflip: 0.5
   seed: 42
   amp: false
+# AP score filtering and the operating threshold for precision/recall/F1.
 eval:
   score_threshold: 0.001
   conf: 0.25
