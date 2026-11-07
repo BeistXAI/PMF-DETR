@@ -74,6 +74,7 @@ def aligned_iou_and_giou(boxes1: Tensor, boxes2: Tensor) -> tuple[Tensor, Tensor
     return iou, giou
 
 
+# Focaler-GIoU interval bounds: lower = d and upper = u.
 def focaler_giou_loss(pred_boxes: Tensor, target_boxes: Tensor,
                      lower: float = 0.0, upper: float = 0.95) -> Tensor:
     if not 0.0 <= lower < upper <= 1.0:
