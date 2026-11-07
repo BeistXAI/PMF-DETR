@@ -81,6 +81,8 @@ Prepare and train each plane using the corresponding dataset configuration:
 - `configs/datasets/pmf_coronal.yaml`
 - `configs/datasets/pmf_sagittal.yaml`
 
+The [CSV manifests](configs/splits/) record the patient cohort and its training/test membership. The configuration paths below describe a prepared local layout. Keep the recorded patient assignment when adapting paths.
+
 ![Fracture and normal CT examples from the PMF dataset](assets/figure_06_dataset_examples.jpeg)
 
 **Fig. 2.** Examples of fracture and normal CT images from the pediatric mandible fracture dataset, organized by anatomical plane, fracture site and fracture type.
