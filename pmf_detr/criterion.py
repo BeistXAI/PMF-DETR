@@ -70,6 +70,8 @@ def _validate_outputs(outputs: dict) -> None:
         raise FloatingPointError("Model predictions contain NaN or Inf.")
 
 
+# giou_weight is the localization weight; loss_giou retains the selected loss.
+# With box_loss="focaler_giou", both refer to Focaler-GIoU, not an extra GIoU term.
 class SetCriterion(nn.Module):
     def __init__(self, num_classes: int, matcher: HungarianMatcher | None = None,
                  box_loss: str = "focaler_giou", focaler_lower: float = 0.0,
