@@ -38,6 +38,7 @@ class MEEAResNet18(nn.Module):
             ConvBNAct(32, 32, 3, 1, "relu"),
             ConvBNAct(32, 64, 3, 1, "relu"), nn.MaxPool2d(3, 2, 1),
         )
+        # MEEA follows the stem/max-pool and precedes the first BasicBlock stage.
         self.edge = MEEA(64, meea_dilations, meea_sigma, meea_wavelength, meea_gamma) if meea else nn.Identity()
         self.stages = nn.ModuleList()
         in_channels = 64
